@@ -1,10 +1,10 @@
 package com.glqdlt.ex.tddspringwebapp;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 
 
+@AllArgsConstructor
+@NoArgsConstructor
 @ToString
 @Getter
 @Builder

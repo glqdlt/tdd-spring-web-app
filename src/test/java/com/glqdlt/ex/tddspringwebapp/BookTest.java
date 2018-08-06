@@ -4,8 +4,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 public class BookTest {
 
     private Book book;
@@ -18,10 +16,21 @@ public class BookTest {
                 .build();
     }
 
+
+
     @Test
     public void isNotNullBook() {
         Assert.assertNotNull(book);
         Assert.assertEquals("어른왕자", book.getTitle());
         Assert.assertEquals("jhun", book.getAuthor());
+    }
+
+
+    @Test
+    public void canCreateBookByAllArgs() {
+
+        Book someBook = new Book("아하하","후후");
+        Assert.assertNotNull(someBook);
+
     }
 }
