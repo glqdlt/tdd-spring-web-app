@@ -14,6 +14,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -41,14 +42,39 @@ public class SimpleWebControllerTest {
     }
 
     @Test
-    public void shouldViewBookDashboardAllBooks() throws Exception {
+    public void shouldViewBookDashboardAllBooksLegacy() throws Exception {
+
+//      findAllBooks가 호출될 때에 books를 반환하도록 해놓는다.
         Mockito.when(bookService.findAllBooks()).thenReturn(books);
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders.get("/books");
 
+//        리퀘스트를 수행하고, 반환되는 것이 있을 것이다.
         MvcResult result = mockMvc.perform(request).andReturn();
+
+//        books 라는 모델의 값을 가져와서 resultBooks에 담는다.
         List<Book> resultBooks = (List<Book>) result.getModelAndView().getModel().get("books");
 
+//        실제 값과 expected 값을 비교
         Assert.assertEquals(10, resultBooks.size());
         Assert.assertEquals("title1", resultBooks.get(0).getTitle());
+    }
+
+    @Test
+    public void shouldViewBookDashboardAllBooksModernStyle() throws Exception {
+
+//      findAllBooks가 호출될 때에 books를 반환하도록 해놓는다.
+        Mockito.when(bookService.findAllBooks()).thenReturn(books);
+        MockHttpServletRequestBuilder request = MockMvcRequestBuilders.get("/books");
+
+        mockMvc.perform(request)
+//        request 수행 중에 book-dashboard.html 을 return 하는 지..
+                .andExpect(MockMvcResultMatchers.view().name("book-dashboard"))
+//        reqeust 수행 중에 model 에서 가져온 데이터가 books와 같은 지..
+                .andExpect(MockMvcResultMatchers.model().attribute("books",books));
+
+//        findAllBooks 가 컨트롤러를 통해 실제로 호출 되었을 때를 검증한다.
+        Mockito.verify(bookService).findAllBooks();
+//        bookService 와 더 이상의 호출이 없는지
+        Mockito.verifyNoMoreInteractions(bookService);
     }
 }
