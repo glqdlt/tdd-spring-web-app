@@ -15,9 +15,9 @@ public class SimpleRestController {
     BookService bookService;
 
     @PostMapping("/save")
-    public ResponseEntity saveNewBook(){
-        Book book = bookService.saveNewBook();
-        return new ResponseEntity<>(book,HttpStatus.CREATED);
+    public ResponseEntity saveNewBook(Book book){
+        Book bewBook = bookService.saveNewBook(book);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
 }

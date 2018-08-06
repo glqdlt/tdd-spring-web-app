@@ -7,14 +7,13 @@ import java.util.List;
 @Service
 public class BookServiceImpl implements BookService {
 
-
     @Override
-    public Book saveNewBook() {
+    public List<Book> findAllBooks() {
         return null;
     }
 
     @Override
-    public List<Book> findAllBooks() {
+    public Book saveNewBook(Book book) {
         return null;
     }
 }
