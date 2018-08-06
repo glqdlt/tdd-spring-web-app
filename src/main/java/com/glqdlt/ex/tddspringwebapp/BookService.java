@@ -5,9 +5,6 @@ import java.util.List;
 
 public interface BookService {
 
-    Book saveNewBook();
-
     List<Book> findAllBooks();
-
-
+    Book saveNewBook(Book book);
 }
