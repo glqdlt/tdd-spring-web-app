@@ -49,7 +49,7 @@ public class SimpleRestControllerTest {
     public void createNewBook() throws Exception {
 
 //BDD Style (http://www.baeldung.com/bdd-mockito)
-//      이걸 따라하고 있는데 생각보다 잘 되질 않는다.  https://memorynotfound.com/unit-test-spring-mvc-rest-service-junit-mockito/
+//https://memorynotfound.com/unit-test-spring-mvc-rest-service-junit-mockito/
 
         BDDMockito.when(bookService.saveNewBook(book))
                 .thenReturn(book);
