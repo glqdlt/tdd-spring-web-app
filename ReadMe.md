@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.com/glqdlt/tdd-spring-web-app.svg?branch=master)](https://travis-ci.com/glqdlt/tdd-spring-web-app)
+[![Coverage Status](https://coveralls.io/repos/github/glqdlt/tdd-spring-web-app/badge.svg)](https://coveralls.io/github/glqdlt/tdd-spring-web-app)
 
 # 
 
