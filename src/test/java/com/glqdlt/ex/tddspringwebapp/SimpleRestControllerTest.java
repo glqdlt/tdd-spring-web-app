@@ -69,4 +69,27 @@ public class SimpleRestControllerTest {
                 .andExpect(MockMvcResultMatchers.content().json("{\"title\":\"호호\",\"author\":\"하하\"}"));
 
     }
+
+
+    @Test
+    public void testBadCreateNewBook() throws Exception {
+
+//GIVEN
+        BDDMockito.given(bookService.saveNewBook(BDDMockito.any()))
+                .willReturn(Book.builder()
+                        .title("호호")
+                        .author("하하")
+                        .build());
+//WHEN
+        MockHttpServletRequestBuilder request = MockMvcRequestBuilders.post("/api/book")
+                .content("title=하하!!&author=호호")
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                .accept(MediaType.APPLICATION_JSON_UTF8_VALUE);
+//THEN
+        mockMvc.perform(request)
+                .andExpect(MockMvcResultMatchers.status().isBadRequest())
+                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(MockMvcResultMatchers.content().json("{\"code\":400,\"message\":\"제목은 영문한글숫자 100글자 미만만 됩니다.\"}"));
+
+    }
 }
