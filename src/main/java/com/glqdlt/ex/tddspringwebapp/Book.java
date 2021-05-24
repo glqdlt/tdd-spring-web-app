@@ -1,12 +1,18 @@
 package com.glqdlt.ex.tddspringwebapp;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
-@AllArgsConstructor
+/**
+ * @author glqdlt
+ * @since 0.0.1
+ */
+@Data
 @NoArgsConstructor
-@ToString
-@Getter
+@AllArgsConstructor
 @Builder
 public class Book {
 

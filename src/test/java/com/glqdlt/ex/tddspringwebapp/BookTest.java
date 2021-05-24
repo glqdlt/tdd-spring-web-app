@@ -1,25 +1,19 @@
 package com.glqdlt.ex.tddspringwebapp;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * @author glqdlt
+ * @since 0.0.1
+ */
 public class BookTest {
-
-    private Book book;
-
-    @Before
-    public void setUp() throws Exception {
-        this.book = Book.builder()
+    @Test
+    public void isNotNullBook() {
+        Book book = Book.builder()
                 .title("어른왕자")
                 .author("jhun")
                 .build();
-    }
-
-
-
-    @Test
-    public void isNotNullBook() {
         Assert.assertNotNull(book);
         Assert.assertEquals("어른왕자", book.getTitle());
         Assert.assertEquals("jhun", book.getAuthor());
@@ -28,9 +22,8 @@ public class BookTest {
 
     @Test
     public void canCreateBookByAllArgs() {
-
-        Book someBook = new Book("아하하","후후");
-        Assert.assertNotNull(someBook);
-
+        Book someBook = new Book("제목", "작가");
+        Assert.assertEquals("제목", someBook.getTitle());
+        Assert.assertEquals("작가", someBook.getAuthor());
     }
 }
