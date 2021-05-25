@@ -1,3 +1,4 @@
 language: java
+jdk: openjdk8
 script: mvn clean install package
 after_success: mvn clean coveralls:report
