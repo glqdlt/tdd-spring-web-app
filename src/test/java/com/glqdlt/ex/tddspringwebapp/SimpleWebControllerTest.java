@@ -45,6 +45,7 @@ public class SimpleWebControllerTest {
 
     }
 
+    @SuppressWarnings("unchecked")
     @Test
     public void shouldViewBookDashboardAllBooksLegacy() throws Exception {
 
@@ -57,6 +58,7 @@ public class SimpleWebControllerTest {
 
 //        books 라는 모델의 값을 가져와서 resultBooks에 담는다.
         List<Book> resultBooks = (List<Book>) result.getModelAndView().getModel().get("books");
+
 
 //        실제 값과 expected 값을 비교
         Assert.assertEquals(10, resultBooks.size());
