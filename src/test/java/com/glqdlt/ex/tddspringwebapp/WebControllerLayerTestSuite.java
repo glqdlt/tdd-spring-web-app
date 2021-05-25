@@ -1,5 +1,7 @@
 package com.glqdlt.ex.tddspringwebapp;
 
+import com.glqdlt.ex.tddspringwebapp.controller.SimpleRestControllerTest;
+import com.glqdlt.ex.tddspringwebapp.controller.SimpleWebControllerTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 

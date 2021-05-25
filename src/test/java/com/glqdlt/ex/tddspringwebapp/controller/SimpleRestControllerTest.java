@@ -1,5 +1,8 @@
-package com.glqdlt.ex.tddspringwebapp;
+package com.glqdlt.ex.tddspringwebapp.controller;
 
+import com.glqdlt.ex.tddspringwebapp.Book;
+import com.glqdlt.ex.tddspringwebapp.BookService;
+import com.glqdlt.ex.tddspringwebapp.SimpleRestController;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;

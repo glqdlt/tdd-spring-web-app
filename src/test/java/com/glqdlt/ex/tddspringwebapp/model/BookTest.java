@@ -1,5 +1,6 @@
-package com.glqdlt.ex.tddspringwebapp;
+package com.glqdlt.ex.tddspringwebapp.model;
 
+import com.glqdlt.ex.tddspringwebapp.Book;
 import org.junit.Assert;
 import org.junit.Test;
 

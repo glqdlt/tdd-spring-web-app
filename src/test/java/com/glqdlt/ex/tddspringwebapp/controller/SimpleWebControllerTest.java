@@ -1,5 +1,8 @@
-package com.glqdlt.ex.tddspringwebapp;
+package com.glqdlt.ex.tddspringwebapp.controller;
 
+import com.glqdlt.ex.tddspringwebapp.Book;
+import com.glqdlt.ex.tddspringwebapp.BookService;
+import com.glqdlt.ex.tddspringwebapp.SimpleWebController;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Before;
@@ -52,15 +55,8 @@ public class SimpleWebControllerTest {
 //GIVEN
         Mockito.when(bookService.findAllBooks()).thenReturn(books);
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders.get("/view/book");
-
-//        리퀘스트를 수행하고, 반환되는 것이 있을 것이다.
         MvcResult result = mockMvc.perform(request).andReturn();
-
-//        books 라는 모델의 값을 가져와서 resultBooks에 담는다.
         List<Book> resultBooks = (List<Book>) result.getModelAndView().getModel().get("books");
-
-
-//        실제 값과 expected 값을 비교
         Assert.assertEquals(10, resultBooks.size());
         Assert.assertEquals("title1", resultBooks.get(0).getTitle());
     }
@@ -68,19 +64,16 @@ public class SimpleWebControllerTest {
     @Test
     public void shouldViewBookDashboardAllBooksModernStyle() throws Exception {
 
-//      findAllBooks가 호출될 때에 books를 반환하도록 해놓는다.
         Mockito.when(bookService.findAllBooks()).thenReturn(books);
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders.get("/view/book");
 
         mockMvc.perform(request)
-//        request 수행 중에 book-dashboard.html 을 return 하는 지..
                 .andExpect(MockMvcResultMatchers.view().name("book-dashboard"))
-//        reqeust 수행 중에 model 에서 가져온 데이터가 books와 같은 지..
                 .andExpect(MockMvcResultMatchers.model().attribute("books", books));
 
-//        findAllBooks 가 컨트롤러를 통해 실제로 호출 되었을 때를 검증한다.
+//        BookService#findAllBooks() 실제 호출 여부
         Mockito.verify(bookService).findAllBooks();
-//        bookService 와 더 이상의 호출이 없는지
+//        추가 호출 됬는지
         Mockito.verifyNoMoreInteractions(bookService);
     }
 }
