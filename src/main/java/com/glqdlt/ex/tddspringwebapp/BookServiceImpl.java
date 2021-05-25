@@ -1,9 +1,10 @@
 package com.glqdlt.ex.tddspringwebapp;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author glqdlt
@@ -12,13 +13,19 @@ import java.util.List;
 @Service
 public class BookServiceImpl implements BookService {
 
+    @Autowired
+    private BookRepository bookRepository;
+
     @Override
     public List<Book> findAllBooks() {
-        return new LinkedList<>();
+        return bookRepository.findAll()
+                .stream()
+                .map(x -> (Book) x)
+                .collect(Collectors.toList());
     }
 
     @Override
     public Book saveNewBook(Book book) {
-        return book;
+        return bookRepository.save(BookEntity.valueOf(book));
     }
 }

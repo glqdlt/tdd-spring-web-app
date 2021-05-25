@@ -1,6 +1,7 @@
 package com.glqdlt.ex.tddspringwebapp.model;
 
 import com.glqdlt.ex.tddspringwebapp.Book;
+import com.glqdlt.ex.tddspringwebapp.BookEntity;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -26,5 +27,17 @@ public class BookTest {
         Book someBook = new Book("제목", "작가");
         Assert.assertEquals("제목", someBook.getTitle());
         Assert.assertEquals("작가", someBook.getAuthor());
+    }
+
+    @Test
+    public void testStaticValueOfMethod() {
+        Book book
+                = new Book();
+        book.setTitle("title");
+        book.setAuthor("author");
+
+        BookEntity result = BookEntity.valueOf(book);
+        Assert.assertEquals(book.getTitle(), result.getTitle());
+        Assert.assertEquals(book.getAuthor(), result.getAuthor());
     }
 }

@@ -9,6 +9,14 @@ import javax.persistence.*;
 @Entity
 @Table(name = "book")
 public class BookEntity extends Book {
+
+    public static BookEntity valueOf(Book b) {
+        BookEntity bookEntity = new BookEntity();
+        bookEntity.setAuthor(b.getAuthor());
+        bookEntity.setTitle(b.getTitle());
+        return bookEntity;
+    }
+
     private Integer id;
 
     @Id
